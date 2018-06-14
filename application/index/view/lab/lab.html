@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>实验管理系统</title>
+    <link rel="stylesheet" href="__PUBLIC__/style/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/style/css/base.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    {include file="common/header" /}
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <h2>实验室</h2>
+        {if condition="$lid eq 0"}
+        <form class="layui-form layui-container" method="post" action="{:url('Lab/add')}">
+        {/if}
+        {if condition="$lid neq 0"}
+        <form class="layui-form layui-container" method="post" action="{:url('Lab/edit',['lid'=>$lid])}">
+        {/if}
+            <div class="layui-row">
+                <div class="layui-col-lg3 layui-col-md4 layui-col-sm6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">实验室名称</label>
+                        <div class="layui-input-block">
+                            {if condition="$lid eq 0"}
+                            <input type="text" name="lab_name" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+                            {if condition="$lid neq 0"}
+                            <input type="text" name="lab_name" value="{$labinfo.lab_name}" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-lg3 layui-col-md4 layui-col-sm6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">实验室地点</label>
+                        <div class="layui-input-block">
+                            {if condition="$lid eq 0"}
+                            <input type="text" name="lab_area" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+                            {if condition="$lid neq 0"}
+                            <input type="text" name="lab_area" value="{$labinfo.lab_area}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-lg3 layui-col-md4 layui-col-sm6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">总设备数</label>
+                        <div class="layui-input-block">
+                            {if condition="$lid eq 0"}
+                            <input type="text" name="lab_enum" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+                            {if condition="$lid neq 0"}
+                            <input type="text" name="lab_enum" required  value="{$labinfo.lab_enum}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-lg3 layui-col-md4 layui-col-sm6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">容纳学生数</label>
+                        <div class="layui-input-block">
+                            {if condition="$lid eq 0"}
+                            <input type="text" name="lab_stun" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+
+                            {if condition="$lid neq 0"}
+                            <input type="text" name="lab_stun" required value="{$labinfo.lab_stun}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">规章制度</label>
+                    <div class="layui-input-block">
+                        {if condition="$lid eq 0"}
+                        <textarea name="lab_rule" required lay-verify="required" placeholder="" class="layui-textarea"></textarea>
+                        {/if}
+
+                        {if condition="$lid neq 0"}
+                        <textarea name="lab_rule" required lay-verify="required" placeholder="" class="layui-textarea">{$labinfo.lab_rule}</textarea>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="new-lab">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {include file="common/footer" /}
+</div>
+
+<script src="__PUBLIC__/style/layui/layui.js"></script>
+<script>
+    layui.use(['element','form'], function() {
+        var element = layui.element,
+            form = layui.form;
+    })
+</script>
+<script src="__PUBLIC__/style/js/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>实验管理系统</title>
+    <link rel="stylesheet" href="__PUBLIC__/style/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/style/css/base.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    {include file="common/header" /}
+    <div class="layui-body">
+        <div class="layui-container">
+            <!-- 内容主体区域 -->
+            <h2>我的预约
+                <div class="layui-show-md-inline-block" style="float: right;">
+                    <a href="javascript:;" class="layui-btn" title="仅打印未提交的预约数据" id="output-num-btn">生成预约申请书</a>
+                </div>
+            </h2>
+            <table id="reservation_user" lay-filter="reservation_user"></table>
+            <script type="text/html" id="operation-bar">
+                {{# var ifdisabled=(d.ifsubmit=='是'?'layui-btn-disabled':'')}}
+                <a class="layui-btn layui-btn-xs {{ifdisabled}}" lay-event="{{ifdisabled=='layui-btn-disabled'?'':'change'}}">修改</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs {{ifdisabled}}" lay-event="{{ifdisabled=='layui-btn-disabled'?'':'del'}}">撤销</a>
+            </script>
+
+        </div>
+    </div>
+    {include file="common/footer" /}
+</div>
+<script type="text/html" id="output_num">
+    <div>
+        <form class="layui-form " method="post" action="{:url('Excel/index')}" style="padding: 15px 20px 0 0;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">生成数目</label>
+                <div class="layui-input-block">
+                    <input type="text" name="output_num" placeholder="仅能生成未提交的预约" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-top: 15px;">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="output_num">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+<script src="__PUBLIC__/style/layui/layui.js"></script>
+<script src="__PUBLIC__/style/js/base.js"></script>
+<script src="__PUBLIC__/style/js/reservation_user.js"></script>
+</body>
+</html>

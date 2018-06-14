@@ -1,0 +1,55 @@
+<!-- 头部 -->
+<div class="layui-header">
+    <div class="layui-logo">实验管理系统</div>
+    <!-- 头部区域-->
+    <ul class="layui-nav layui-layout-left">
+        <li class="layui-nav-item">
+            <a href="{:url('Index/index')}">首页</a>
+        </li>
+        {if condition="$Request.session.ems_identity neq 'visitor'"}
+        <li class="layui-nav-item">
+            <a href="javascript:;">选择实验室</a>
+            <dl class="layui-nav-child">
+                {volist name="exp" id="vo"}
+                <dd><a href="{:url('Index/table')}?Lab_ID={$vo['id']}">{$vo['lab_name']}</a></dd>
+                {/volist}
+            </dl>
+        </li>
+        {/if}
+        {if condition="$Request.session.ems_identity neq 'visitor'"}
+        <li class="layui-nav-item">
+            <a href="{:url('Reservations/index_user')}">我的预约</a>
+        </li>
+        {/if}
+
+        {if condition="$Request.session.ems_identity eq 'admin'"}
+        <li class="layui-nav-item">
+            <a href="{:url('Reservations/index')}">管理预约</a>
+        </li>
+
+        <li class="layui-nav-item">
+            <a href="{:url('User/lst')}">用户管理</a>
+        </li>
+
+        <li class="layui-nav-item">
+            <a href="{:url('Lab/lst')}">实验室管理</a>
+        </li>
+
+        <li class="layui-nav-item">
+            <a href="{:url('Term/index')}">设置</a>
+        </li>
+        {/if}
+        
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="javascript:;">我的信息</a>
+            <dl class="layui-nav-child">
+                {if condition="$Request.session.ems_identity neq 'visitor'"}
+                <dd><a href="javascript:" id="password-btn">修改密码</a></dd>
+                {/if}
+                <dd><a href="{:url('Index/logout')}">注销</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>

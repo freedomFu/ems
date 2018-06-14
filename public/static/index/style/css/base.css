@@ -1,0 +1,35 @@
+.layui-layout-admin .layui-logo{
+    font-size: 22px;
+}
+.layui-layout-admin .layui-body{
+    left: 0;
+    padding: 15px;
+}
+.layui-body h2:first-child{
+    text-align: center;
+    margin: 0 0 20px;
+}
+.layui-layout-admin .layui-footer{
+    text-align: center;
+    left: 0;
+}
+.layui-table th{
+    text-align: center;
+}
+.layui-table td{
+    text-align: center;
+    padding: 0;
+}
+.title-box{
+    position: absolute;
+    z-index: 9999999;
+    white-space: nowrap;
+    transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    background-color: rgba(50, 50, 50, 0.7);
+    border-width: 0px;
+    border-color: rgb(51, 51, 51);
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    box-sizing: border-box;
+}
